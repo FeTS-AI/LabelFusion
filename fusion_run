@@ -9,8 +9,10 @@ import pkg_resources
 from datetime import date
 
 import numpy as np
+import SimpleITK as sitk
 
 from Methods.itkUtils import *
+from Methods.utils import *
 
 def main():
   copyrightMessage = 'Contact: software@cbica.upenn.edu\n\n' + 'This program is NOT FDA/CE approved and NOT intended for clinical use.\nCopyright (c) ' + str(date.today().year) + ' University of Pennsylvania. All rights reserved.' 
@@ -30,11 +32,16 @@ def main():
   for i in range(1, len(inputs)):
     if not imageSanityCheck(inputs[0], inputs[i]):
       sys.exit('There is a mismatch between the physical definitions of the input labels, please check')
-  
 
   class_list = list(args.classes.split(','))
   class_list_int = [int(i) for i in class_list]
 
+  inputArrays = []
+  baseImage = sitk.ReadImage(inputs[0], sitk.sitkUInt8) # store this for image header information
+  inputArrays.append(sitk.GetArrayFromImage(baseImage))
+
+  for i in range(1, len(inputs)):
+    inputArrays.append(sitk.GetArrayFromImage(sitk.ReadImage(inputs[i], sitk.sitkUInt8)))
 
   test = 1
 
