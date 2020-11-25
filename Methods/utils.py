@@ -14,11 +14,12 @@ def one_hot_nonoverlap(segmask_array, class_list):
   '''
   This function takes an N-D mask and a class list and returns a dictionary of one-hot encoded segmentations
   '''
+  returnSeg = {}
   returnSeg[class_list[0]] = (segmask_array == class_list[0]).astype(np.uint8)
   for i in range(1, len(class_list)):
     returnSeg[class_list[i]] = (segmask_array == class_list[i]).astype(np.uint8)
 
-  return np.array(onehot_stack)
+  return returnSeg
     
 def one_hot_2_overlap(segmask_array):
     wht_mask = (segmask_array >= 1).astype(np.uint8)
