@@ -21,9 +21,16 @@ def main():
     parser.add_argument('-output', type=str, help = 'The output file to write the results', required=True)
 
     args = parser.parse_args()
+    
+    inputs = list(args.inputs.split(',')) # list of input file paths
+
+    if len(inputs) < 2:
+        sys.exit('Cannot perform fusion for less than 2 input labels')
+
 
     class_list = list(args.classes.split(','))
     class_list_int = [int(i) for i in class_list]
+
 
     test = 1
 
