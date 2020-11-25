@@ -15,3 +15,13 @@ def imageSanityCheck(targetImageFile, inputImageFile) -> bool:
   if targetImage.GetSize() != inputImage.GetSize():
     print('Size mismatch for target and input image', file = sys.stderr)
     return False
+    
+  if targetImage.GetOrigin() != inputImage.GetOrigin():
+    print('Origin mismatch for target and input image', file = sys.stderr)
+    return False
+
+  if targetImage.GetSpacing() != inputImage.GetSpacing():
+    print('Spacing mismatch for target and input image', file = sys.stderr)
+    return False
+
+  return True
