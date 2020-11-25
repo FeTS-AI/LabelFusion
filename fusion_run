@@ -10,7 +10,7 @@ from datetime import date
 
 import numpy as np
 
-# from .Methods import *
+from Methods.itkUtils import *
 
 def main():
     copyrightMessage = 'Contact: software@cbica.upenn.edu\n\n' + 'This program is NOT FDA/CE approved and NOT intended for clinical use.\nCopyright (c) ' + str(date.today().year) + ' University of Pennsylvania. All rights reserved.' 
@@ -27,6 +27,9 @@ def main():
     if len(inputs) < 2:
         sys.exit('Cannot perform fusion for less than 2 input labels')
 
+    for i in range(1, len(inputs)):
+        if not imageSanityCheck(inputs[0], inputs[i]):
+            sys.exit('There is a mismatch between the physical definitions of the input labels, please check')
 
     class_list = list(args.classes.split(','))
     class_list_int = [int(i) for i in class_list]
