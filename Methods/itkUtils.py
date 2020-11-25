@@ -12,8 +12,6 @@ def imageSanityCheck(targetImageFile, inputImageFile) -> bool:
     print('Dimension mismatch for target and input image', file = sys.stderr)
     return False
 
-  if targetImage.GetNumberOfPixels() != inputImage.GetNumberOfPixels():
-    print('Number of pixels mismatch for target and input image', file = sys.stderr)
+  if targetImage.GetSize() != inputImage.GetSize():
+    print('Size mismatch for target and input image', file = sys.stderr)
     return False
-
-  
