@@ -37,18 +37,27 @@ def main():
   class_list = list(args.classes.split(','))
   class_list_int = [int(i) for i in class_list]
 
-  inputArrayOfOneHotEncodedMasks = []
+  inputListOfOneHotEncodedMasks = []
 
-  for i in range(0, len(inputs)):
+  # read first image to keep for metadata
+  baseImage = sitk.ReadImage(inputs[0], sitk.sitkUInt8)
+  fused_segmentation = sitk.GetArrayFromImage(baseImage) # initialize the fused segmentation array
+
+  inputListOfOneHotEncodedMasks.append(one_hot_nonoverlap(fused_segmentation))
+
+  for i in range(1, len(inputs)):
     currentImageArray = sitk.GetArrayFromImage(sitk.ReadImage(inputs[i], sitk.sitkUInt8))
     currentImageArray_oneHot = one_hot_nonoverlap(currentImageArray, class_list_int)
-    inputArrayOfOneHotEncodedMasks.append(currentImageArray_oneHot)
+    inputListOfOneHotEncodedMasks.append(currentImageArray_oneHot)
 
-  fused_oneHot = majority_voting(inputArrayOfOneHotEncodedMasks)
+  method = args.method.lower()
+  
+  # call the fusion
+  fused_oneHot = majority_voting(inputListOfOneHotEncodedMasks, method)
   fused_segmentation = convert_to_3D(fused_oneHot, class_list_int)
 
-  fused_image = sitk.GetImageFromArray(fused_segmentation)
-  fused_image.CopyInformation(sitk.ReadImage(inputs[0], sitk.sitkUInt8))
+  fused_image = sitk.GetImageFromArray(fused_segmentation) # construct the image from array
+  fused_image.CopyInformation(baseImage)
   sitk.WriteImage(fused_image, args.output)
 
 
