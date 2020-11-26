@@ -7,7 +7,7 @@ def staple(segmentationArray_oneHot, class_list_int):
 
   Reference: DOI:10.1007/3-540-45786-0_37
   '''
-  segmentation_images = []]
+  segmentation_images = []
   for i in range(0, len(segmentationArray_oneHot)):
     currentImage_fused = convert_to_3D(segmentationArray_oneHot[i], class_list)
     currentImage = 
