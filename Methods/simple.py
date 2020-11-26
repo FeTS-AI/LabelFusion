@@ -8,7 +8,7 @@ def simple_iterative(segmentationArray_oneHot):
 
   Reference: DOI:10.1109/tmi.2010.2057442
   '''
-  segmentationArray_oneHot_wrap = segmentationArray_oneHot
+  segmentationArray_oneHot_wrap = segmentationArray_oneHot # make a copy so that input isn't overwritten
   seg_for_comparision = majority_voting(segmentationArray_oneHot_wrap) # use majority voting as initial
   
   dice_list = []
