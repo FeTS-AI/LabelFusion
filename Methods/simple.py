@@ -27,6 +27,7 @@ def simple_iterative(segmentationArray_oneHot):
 
     dice_list = [] # re-initilize dice list to get iteratively updated 
     seg_sum = np.zeros(segmentationArray_oneHot[0].shape) # initialize the first segmentation
+    # loop through remaining and calculate updated segmentation
     for i in range(0, len(segmentationArray_oneHot_wrap)): 
       current_dice = 1 - MCD_loss(segmentationArray_oneHot_wrap[i], seg_for_comparision, num_classes)
       dice_list.append(current_dice)
@@ -35,3 +36,4 @@ def simple_iterative(segmentationArray_oneHot):
     seg_for_comparision = (seg_sum/(sum(dice_list))>0.5).astype(int) # update the seg_for_comparision    
 
   return seg_for_comparision
+  
