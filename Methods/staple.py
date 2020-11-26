@@ -9,7 +9,10 @@ def staple(segmentationArray_oneHot, class_list_int):
   '''
   segmentation_images = []
   for i in range(0, len(segmentationArray_oneHot)):
-    currentImage_fused = convert_to_3D(segmentationArray_oneHot[i], class_list)
-    currentImage = 
+    currentImage_fused = convert_to_3D(segmentationArray_oneHot[i], class_list_int)
+    currentImage = sitk.GetImageFromArray(currentImage_fused)
+    segmentation_images.append(currentImage)
 
-  test = 1
+  fused_segmentation = sitk.MultiLabelSTAPLE(segmentation_images)
+
+  return fused_segmentation
