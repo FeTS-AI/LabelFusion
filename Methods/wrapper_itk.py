@@ -7,4 +7,6 @@ def fuse_segmentations_itk(list_of_segmentations_images, method):
   if 'staple' in method:
     return sitk.MultiLabelSTAPLE(list_of_segmentations_images) # DOI: 10.1109/TMI.2004.830803
   elif 'voting' in method:
-    return sitk.LabelVotingImageFilter(list_of_segmentations_images) # DOI: 10.1016/j.patrec.2005.03.017
+    votingFilter = sitk.LabelVotingImageFilter()
+    votingFilter.SetLabelForUndecidedPixels(0)
+    return votingFilter.Execute(list_of_segmentations_images) # DOI: 10.1016/j.patrec.2005.03.017
