@@ -13,8 +13,8 @@ pip install -e .
 
 ## Available Methods:
 
-- Voting (ITK): https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1LabelVotingImageFilter.html
-- STAPLE (ITK): https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1MultiLabelSTAPLEImageFilter.html
+- [Voting (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1LabelVotingImageFilter.html)
+- [STAPLE (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1MultiLabelSTAPLEImageFilter.html)
 - Majority Voting
 - SIMPLE: DOI:10.1109/tmi.2010.2057442
 
