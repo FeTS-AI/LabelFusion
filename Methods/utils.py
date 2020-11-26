@@ -1,12 +1,12 @@
 import numpy as np
 
-def convert_to_3D(seg, class_list):
+def convert_to_3D(segmentation_oneHot, class_list):
   '''
   This function takes a one-hot encoded mask and returns a 3D segmentation
   '''
-  returnSeg = seg[class_list[0]] * class_list[0]
+  returnSeg = segmentation_oneHot[class_list[0]] * class_list[0] # initialize
   for i in range(1, len(class_list)):
-    returnSeg += seg[i] * class_list[i]
+    returnSeg += segmentation_oneHot[i] * class_list[i]
 
   return returnSeg
 
