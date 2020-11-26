@@ -19,12 +19,3 @@ def one_hot_nonoverlap(segmask_array, class_list):
     returnSeg.append((segmask_array == class_list[i]).astype(np.uint8))
 
   return np.stack(returnSeg, axis=0)
-
-## commented because it is not used anywhere  
-# def one_hot_2_overlap(segmask_array):
-#     wht_mask = (segmask_array >= 1).astype(np.uint8)
-#     tuc_mask = np.logical_or(segmask_array == 1, segmask_array == 4)
-#     tuc_mask = tuc_mask.astype(np.uint8)
-#     enh_mask = (segmask_array == 4).astype(np.uint8)
-#     onehot_stack = [wht_mask, tuc_mask, enh_mask]
-#     return np.array(onehot_stack)
