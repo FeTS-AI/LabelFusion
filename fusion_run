@@ -15,13 +15,14 @@ from Methods.itkUtils import *
 from Methods.utils import *
 from Methods.majority_voting import *
 from Methods.wrapper import *
+from Methods.wrapper_itk import *
 
 def main():
   copyrightMessage = 'Contact: software@cbica.upenn.edu\n\n' + 'This program is NOT FDA/CE approved and NOT intended for clinical use.\nCopyright (c) ' + str(date.today().year) + ' University of Pennsylvania. All rights reserved.' 
   parser = argparse.ArgumentParser(prog='LabelFusion', formatter_class=argparse.RawTextHelpFormatter, description = "Fusion of different labels together.\n\n" + copyrightMessage)
   parser.add_argument('-inputs', type=str, help = 'The absolute, comma-separated paths of labels that need to be fused', required=True)
   parser.add_argument('-classes', type=str, help = 'The expected labels; for example, for BraTS, this should be \'0,1,2,4\'', required=True)
-  parser.add_argument('-method', type=str, help = 'The method to apply; currently available: MajorityVoting | SIMPLE | STAPLE', required=True)
+  parser.add_argument('-method', type=str, help = 'The method to apply; currently available: MajorityVoting | SIMPLE | STAPLE | ITKVoting', required=True)
   parser.add_argument('-output', type=str, help = 'The output file to write the results', required=True)
 
   args = parser.parse_args()
@@ -40,7 +41,7 @@ def main():
 
   method = args.method.lower()
 
-  direct_itk_methods = ['staple']
+  direct_itk_methods = ['staple', 'itkvoting']
   
   if not(method in direct_itk_methods): # for non-itk methods, get image arrays
     inputListOfOneHotEncodedMasks = []
@@ -67,7 +68,7 @@ def main():
     for i in range(1, len(inputs)):
       inputSegmentationImages.append(sitk.ReadImage(inputs[i], sitk.sitkUInt8))
 
-    fused_segmentation_image = sitk.MultiLabelSTAPLE(inputSegmentationImages)
+    fused_segmentation_image = fuse_segmentations_itk(inputSegmentationImages, method)
 
   sitk.WriteImage(fused_segmentation_image, args.output)
 
