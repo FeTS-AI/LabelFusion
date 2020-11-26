@@ -19,3 +19,24 @@ def one_hot_nonoverlap(segmask_array, class_list):
     returnSeg.append((segmask_array == class_list[i]).astype(np.uint8))
 
   return np.stack(returnSeg, axis=0)
+
+def dice_loss(inp, target):
+  '''
+  This function calculates the DICE loss for 2 segmentation arrays
+  '''
+  smooth = 1e-7
+  iflat = inp.flatten()
+  tflat = target.flatten()
+  intersection = (iflat * tflat).sum()
+  return 1 - ((2. * intersection + smooth) /
+              (iflat.sum() + tflat.sum() + smooth))
+
+def MCD_loss(pm, gt, num_class):
+  '''
+  This function calculates the DICE loss for 2 multi-class segmentation arrays
+  '''
+  acc_dice_loss = 0
+  for i in range(0,num_class):
+      acc_dice_loss += dice_loss(gt[i,:,:,:],pm[i,:,:,:])
+  acc_dice_loss/= num_class
+  return acc_dice_loss
