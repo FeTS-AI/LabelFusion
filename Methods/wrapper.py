@@ -1,6 +1,5 @@
 from .majority_voting import *
 from .simple import *
-from .staple import *
 
 def fuse_segmentations(list_of_oneHotEncodedSegmentations, method, class_list):
   '''
