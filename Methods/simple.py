@@ -21,7 +21,7 @@ def simple_iterative(segmentationArray_oneHot):
 
   for i in range(num_iter):
     order = np.array(dice_list).argsort() # sort the dice
-    # remove the first segmentation because 
+    # remove the best segmentation from comparision - part of SIMPLE algorithm
     del dice_list[order[0]] 
     del segmentationArray_oneHot_wrap[order[0]]
 
