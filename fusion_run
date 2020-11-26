@@ -13,6 +13,7 @@ import SimpleITK as sitk
 
 from Methods.itkUtils import *
 from Methods.utils import *
+from Methods.majority_voting import *
 
 def main():
   copyrightMessage = 'Contact: software@cbica.upenn.edu\n\n' + 'This program is NOT FDA/CE approved and NOT intended for clinical use.\nCopyright (c) ' + str(date.today().year) + ' University of Pennsylvania. All rights reserved.' 
@@ -36,14 +37,19 @@ def main():
   class_list = list(args.classes.split(','))
   class_list_int = [int(i) for i in class_list]
 
-  inputArrays = []
-  baseImage = sitk.ReadImage(inputs[0], sitk.sitkUInt8) # store this for image header information
-  inputArrays.append(sitk.GetArrayFromImage(baseImage))
+  inputArrayOfOneHotEncodedMasks = []
 
-  for i in range(1, len(inputs)):
-    inputArrays.append(sitk.GetArrayFromImage(sitk.ReadImage(inputs[i], sitk.sitkUInt8)))
+  for i in range(0, len(inputs)):
+    currentImageArray = sitk.GetArrayFromImage(sitk.ReadImage(inputs[i], sitk.sitkUInt8))
+    currentImageArray_oneHot = one_hot_nonoverlap(currentImageArray, class_list_int)
+    inputArrayOfOneHotEncodedMasks.append(currentImageArray_oneHot)
 
-  test = 1
+  fused_oneHot = majority_voting(inputArrayOfOneHotEncodedMasks)
+  fused_segmentation = convert_to_3D(fused_oneHot, class_list_int)
+
+  fused_image = sitk.GetImageFromArray(fused_segmentation)
+  fused_image.CopyInformation(sitk.ReadImage(inputs[0], sitk.sitkUInt8))
+  sitk.WriteImage(fused_image, args.output)
 
 
 if __name__ == '__main__':
