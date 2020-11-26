@@ -4,7 +4,7 @@ from .utils import *
 
 def simple_iterative(segmentationArray_oneHot):
   '''
-  This function takes an list of one-hot encoded masks and returns a 3D one-hot encoded mask
+  This function takes an list of one-hot encoded masks as input and returns a 3D one-hot encoded mask
 
   Reference: DOI:10.1109/tmi.2010.2057442
   '''
@@ -36,4 +36,3 @@ def simple_iterative(segmentationArray_oneHot):
     seg_for_comparision = (seg_sum/(sum(dice_list))>0.5).astype(int) # update the seg_for_comparision    
 
   return seg_for_comparision
-  
