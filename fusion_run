@@ -54,7 +54,7 @@ def main():
   method = args.method.lower()
   
   # call the fusion
-  fused_oneHot = fuse_segmentations(inputListOfOneHotEncodedMasks, method)
+  fused_oneHot = fuse_segmentations(inputListOfOneHotEncodedMasks, method, class_list_int)
   fused_segmentation = convert_to_3D(fused_oneHot, class_list_int)
 
   fused_image = sitk.GetImageFromArray(fused_segmentation) # construct the image from array
