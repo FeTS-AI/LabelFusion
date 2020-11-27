@@ -1,5 +1,5 @@
 import SimpleITK as sitk
-
+import sys
 
 def imageSanityCheck(targetImageFile, inputImageFile) -> bool:
   '''
@@ -25,3 +25,16 @@ def imageSanityCheck(targetImageFile, inputImageFile) -> bool:
     return False
 
   return True
+
+def imageComparision(targetImageFile, inputImageFile) -> bool:
+  '''
+  This function compares arrays of 2 images
+  '''
+  if imageSanityCheck(targetImageFile, inputImageFile): # proceed only when sanity check passes
+    target_array = sitk.GetArrayFromImage(sitk.ReadImage(targetImageFile))
+    input_array = sitk.GetArrayFromImage(sitk.ReadImage(inputImageFile))
+
+    if (target_array == input_array).all():
+      return True
+
+  return False
