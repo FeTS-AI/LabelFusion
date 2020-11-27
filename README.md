@@ -20,8 +20,8 @@ pip install -e .
 
 - [Voting (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1LabelVotingImageFilter.html)
 - [STAPLE (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1MultiLabelSTAPLEImageFilter.html)
-- Majority Voting
-- SIMPLE: DOI:10.1109/tmi.2010.2057442
+- Majority Voting: [DOI:10.1007/978-3-319-20801-5_11](https://doi.org/10.1007/978-3-319-20801-5_11)
+- SIMPLE: [DOI:10.1109/tmi.2010.2057442](https://doi.org/10.1109/TMI.2010.2057442)
 
 ## Usage
 
