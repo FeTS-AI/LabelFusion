@@ -73,6 +73,7 @@ def main():
 
   # finally, write the fused image
   sitk.WriteImage(fused_segmentation_image, args.output)
+  exit(0)
 
 if __name__ == '__main__':
   main()
