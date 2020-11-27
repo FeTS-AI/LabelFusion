@@ -38,7 +38,11 @@ python fusion_run -h
 Example:
 ```powershell
 # continue from previous shell
-python fusion_run -inputs /path/to/seg_algo_1.nii.gz,/path/to/seg_algo_2.nii.gz,/path/to/seg_algo_3.nii.gz -classes 0,1,2,4 -method STAPLE -output /path/to/seg_fusion.nii.gz
+python fusion_run \
+-inputs /path/to/seg_algo_1.nii.gz,/path/to/seg_algo_2.nii.gz,/path/to/seg_algo_3.nii.gz \
+-classes 0,1,2,4 \
+-method STAPLE \
+-output /path/to/seg_fusion.nii.gz
 ```
 
 ## Testing
