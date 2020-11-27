@@ -37,9 +37,10 @@ steps:
   displayName: 'Install dependencies'
 
 - ${{ each method in parameters.methods }}:
-  - script: python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_${{ method }}.nii.gz -classes 0,1,2,4 -method ${{ method }}
-  python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_${{ method }}.nii.gz', './data/test_${{ method }}.nii.gz'))) else print('pass')"
-    # displayName: 'Run through  ${{ method }}'
+  - script: |
+    python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_${{ method }}.nii.gz -classes 0,1,2,4 -method ${{ method }}
+    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_${{ method }}.nii.gz', './data/test_${{ method }}.nii.gz'))) else print('pass')"
+      # displayName: 'Run through  ${{ method }}'
 
 # - script: |
 #     python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_staple.nii.gz -classes 0,1,2,4 -method staple
