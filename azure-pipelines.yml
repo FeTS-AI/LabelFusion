@@ -17,13 +17,13 @@ strategy:
     mac_1:
       imageName: 'macos-latest'
       python.version: '3.6'
-    mac_1:
+    mac_2:
       imageName: 'macos-latest'
       python.version: '3.7'
     windows_1:
       imageName: 'vs2017-latest'
       python.version: '3.6'
-    windows_1:
+    windows_2:
       imageName: 'vs2017-latest'
       python.version: '3.7'
 
