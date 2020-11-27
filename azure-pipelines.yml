@@ -26,7 +26,6 @@ strategy:
     windows_2:
       imageName: 'windows-latest'
       python.version: '3.7'
-  maxParallel: 6
 
 pool:
   vmImage: $(imageName)
