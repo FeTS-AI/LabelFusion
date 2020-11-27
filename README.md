@@ -38,3 +38,16 @@ Example:
 ```powershell
 python ./fusion_run -inputs /path/to/seg_algo_1.nii.gz,/path/to/seg_algo_2.nii.gz,/path/to/seg_algo_3.nii.gz -classes 0,1,2,4 -method STAPLE -output /path/to/seg_fusion.nii.gz
 ```
+
+## Testing
+
+This repo has continuous integration enbabled via [Azure DevOps](https://dev.azure.com/FETS-AI/LabelFusion/_build?definitionId=2&_a=summary) for the following [operating systems](https://github.com/FETS-AI/LabelFusion/blob/a51b82ad9880d466ed1d42441dd46de37e931df4/azure-pipelines.yml#L9):
+
+- Windows
+- Ubuntu
+- macOS
+
+And for the following python versions:
+
+- 3.6
+- 3.7
