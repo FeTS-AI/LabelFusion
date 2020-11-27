@@ -8,17 +8,24 @@ trigger:
 
 strategy:
   matrix:
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
-  matrix:
-    linux:
+    linux_1:
       imageName: 'ubuntu-latest'
-    mac:
+      python.version: '3.6'
+    linux_2:
+      imageName: 'ubuntu-latest'
+      python.version: '3.7'
+    mac_1:
       imageName: 'macos-latest'
-    windows:
+      python.version: '3.6'
+    mac_1:
+      imageName: 'macos-latest'
+      python.version: '3.7'
+    windows_1:
       imageName: 'vs2017-latest'
+      python.version: '3.6'
+    windows_1:
+      imageName: 'vs2017-latest'
+      python.version: '3.7'
 
 pool:
   vmImage: $(imageName)
