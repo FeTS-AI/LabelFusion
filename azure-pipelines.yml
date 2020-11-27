@@ -16,7 +16,7 @@ strategy:
       python.version: '3.7'
 
 parameters:
-  - name: methods
+- name: methods
   type: string
   default: staple
   values:
