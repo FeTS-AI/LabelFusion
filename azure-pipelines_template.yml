@@ -1,0 +1,8 @@
+parameters:
+  methods : []
+
+steps:
+  - ${{each method in parameters.methods}}
+    - scripts: |
+      python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test.nii.gz -classes 0,1,2,4 -method ${{ method  }} 
+      python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_${{ method  }}.nii.gz', './data/test.nii.gz'))) else print('pass')"
