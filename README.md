@@ -18,8 +18,8 @@ pip install -e .
 
 ## Available Methods:
 
-- [Voting (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1LabelVotingImageFilter.html)
-- [STAPLE (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1MultiLabelSTAPLEImageFilter.html)
+- [Voting (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1LabelVotingImageFilter.html): [DOI:10.1016/j.patrec.2005.03.017](https://doi.org/10.1016/j.patrec.2005.03.017)
+- [STAPLE (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1MultiLabelSTAPLEImageFilter.html): [DOI:10.1109/TMI.2004.830803](https://doi.org/10.1109/TMI.2004.830803)
 - Majority Voting: [DOI:10.1007/978-3-319-20801-5_11](https://doi.org/10.1007/978-3-319-20801-5_11)
 - SIMPLE: [DOI:10.1109/tmi.2010.2057442](https://doi.org/10.1109/TMI.2010.2057442)
 
