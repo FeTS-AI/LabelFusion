@@ -34,7 +34,7 @@ steps:
   displayName: 'Run through all options'
   
 - script: |
-    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_staple.nii.gz', './data/test_staple.nii.gz'))) else print('pass')"
+    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_staple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
     python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_itkvoting.nii.gz', './data/test_itkvoting.nii.gz'))) else print('pass')"
     python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_majorityvoting.nii.gz', './data/test_majorityvoting.nii.gz'))) else print('pass')"
     python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
