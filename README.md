@@ -1,4 +1,9 @@
 # LabelFusion
+
+<p align="center">
+    <a href="https://dev.azure.com/FETS-AI/LabelFusion/_build?definitionId=2&_a=summary" alt="Windows_3.6"><img src="https://dev.azure.com/FETS-AI/LabelFusion/_apis/build/status/FETS-AI.LabelFusion?branchName=main&jobName=Job&configuration=Job%20windows_3.6" /></a>
+</p>
+
 This repo contains implementation of various label fusion approaches that can be used to fuse multiple labels.
 
 ## Installation
