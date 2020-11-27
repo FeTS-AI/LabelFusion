@@ -21,10 +21,10 @@ strategy:
       imageName: 'macos-latest'
       python.version: '3.7'
     windows_1:
-      imageName: 'vs2017-latest'
+      imageName: 'windows-latest'
       python.version: '3.6'
     windows_2:
-      imageName: 'vs2017-latest'
+      imageName: 'windows-latest'
       python.version: '3.7'
   maxParallel: 6
 
