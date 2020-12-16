@@ -1,0 +1,12 @@
+steps:
+- script: |
+    conda create -p ./venv python=3.6.5 -y
+    source activate ./venv
+    pip install -e .
+  displayName: 'Install dependencies'
+
+- script: |
+    python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_itkvoting.nii.gz -classes 0,1,2,4 -method itkvoting 
+    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_itkvoting.nii.gz', './data/test_itkvoting.nii.gz'))) else print('pass')"
+  displayName: 'Run through itkvoting'
+  
