@@ -1,21 +1,15 @@
 #!usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-import argparse
-import sys
+import os, argparse, sys, pkg_resources
 from pathlib import Path
-import pkg_resources
 from datetime import date
 
-import numpy as np
 import SimpleITK as sitk
 
 from Methods.itkUtils import *
 from Methods.utils import *
-from Methods.majority_voting import *
 from Methods.wrapper import *
-from Methods.wrapper_itk import *
 
 def main():
   copyrightMessage = 'Contact: software@cbica.upenn.edu\n\n' + 'This program is NOT FDA/CE approved and NOT intended for clinical use.\nCopyright (c) ' + str(date.today().year) + ' University of Pennsylvania. All rights reserved.' 
@@ -41,35 +35,11 @@ def main():
 
   method = args.method.lower()
 
-  direct_itk_methods = ['staple', 'itkvoting']
-  
-  if not(method in direct_itk_methods): # for non-itk methods, get image arrays
-    inputListOfOneHotEncodedMasks = []
-    # read first image to keep for metadata
-    baseImage = sitk.ReadImage(inputs[0], sitk.sitkUInt8)
-    fused_segmentation = sitk.GetArrayFromImage(baseImage) # initialize the fused segmentation array
+  inputSegmentationImages = []
+  for i in range(0, len(inputs)):
+    inputSegmentationImages.append(sitk.ReadImage(inputs[i], sitk.sitkUInt8))
 
-    inputListOfOneHotEncodedMasks.append(one_hot_nonoverlap(fused_segmentation, class_list_int))
-
-    # construct list of one-hot encoded segmentation arrays
-    for i in range(1, len(inputs)):
-      currentImageArray = sitk.GetArrayFromImage(sitk.ReadImage(inputs[i], sitk.sitkUInt8))
-      currentImageArray_oneHot = one_hot_nonoverlap(currentImageArray, class_list_int)
-      inputListOfOneHotEncodedMasks.append(currentImageArray_oneHot)
-
-    # call the fusion
-    fused_oneHot = fuse_segmentations(inputListOfOneHotEncodedMasks, method, class_list_int)
-    fused_segmentation_image = sitk.GetImageFromArray(convert_to_3D(fused_oneHot, class_list_int))
-    fused_segmentation_image.CopyInformation(baseImage)
-
-  else: # for direct itk methods, we actually need the images themselves
-
-    inputSegmentationImages = []
-    for i in range(1, len(inputs)):
-      inputSegmentationImages.append(sitk.ReadImage(inputs[i], sitk.sitkUInt8))
-
-    # call the fusion
-    fused_segmentation_image = fuse_segmentations_itk(inputSegmentationImages, method)
+  fused_segmentation_image = fuse_images(inputSegmentationImages, method, class_list_int)
 
   # finally, write the fused image
   sitk.WriteImage(fused_segmentation_image, args.output)

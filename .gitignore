@@ -130,4 +130,4 @@ dmypy.json
 .vscode
 
 # data
-./data/test_*
+data/test_*.nii.gz
