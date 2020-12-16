@@ -36,7 +36,7 @@ def main():
   method = args.method.lower()
 
   inputSegmentationImages = []
-  for i in range(1, len(inputs)):
+  for i in range(0, len(inputs)):
     inputSegmentationImages.append(sitk.ReadImage(inputs[i], sitk.sitkUInt8))
 
   fused_segmentation_image = fuse_images(inputSegmentationImages, method, class_list_int)
