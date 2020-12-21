@@ -1,1 +1,1 @@
-from Methods.wrapper import fuse_images
+from LabelFusion.wrapper import fuse_images

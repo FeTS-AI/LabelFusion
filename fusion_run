@@ -7,9 +7,9 @@ from datetime import date
 
 import SimpleITK as sitk
 
-from Methods.itkUtils import *
-from Methods.utils import *
-from Methods.wrapper import *
+from LabelFusion.itkUtils import *
+from LabelFusion.utils import *
+from LabelFusion.wrapper import *
 
 def main():
   copyrightMessage = 'Contact: software@cbica.upenn.edu\n\n' + 'This program is NOT FDA/CE approved and NOT intended for clinical use.\nCopyright (c) ' + str(date.today().year) + ' University of Pennsylvania. All rights reserved.' 
