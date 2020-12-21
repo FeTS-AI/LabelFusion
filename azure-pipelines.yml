@@ -30,6 +30,12 @@ strategy:
 pool:
   vmImage: $(imageName)
 
+variables:
+- name: projectName
+  value: {{namespace}}
+- name: projectDirectory
+  value: {{rootdir}}
+  
 steps:
 - task: UsePythonVersion@0
   inputs:
