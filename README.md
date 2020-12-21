@@ -8,6 +8,14 @@ This repo contains implementation of various label fusion approaches that can be
 
 ## Installation
 
+### For Usage
+```powershell
+conda create -n venv_labelFusion python=3.6.5 -y
+conda activate venv_labelFusion
+pip install LabelFusion
+```
+
+### For Development
 ```powershell
 git clone ${labelFusion_repo_link}
 cd LabelFusion
