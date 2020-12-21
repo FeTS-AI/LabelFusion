@@ -11,6 +11,9 @@ requirements = [
   'numpy==1.19.3',
   'SimpleITK==1.2.4',
   'setuptools',
+  'twine',
+  'keyring',
+  'artifacts-keyring'
 ]
 
 setup(
