@@ -3,7 +3,7 @@ from .simple import *
 
 import SimpleITK as sitk
 
-direct_itk_methods = ['staple', 'itkvoting'] # variable that checks which methods can directly use itk images 
+direct_itk_LabelFusion = ['staple', 'itkvoting'] # variable that checks which LabelFusion can directly use itk images 
 
 def fuse_segmentations_nonITK(list_of_oneHotEncodedSegmentations, method, class_list):
   '''

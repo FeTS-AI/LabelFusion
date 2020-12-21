@@ -43,22 +43,22 @@ steps:
 
 - script: |
     python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_staple.nii.gz -classes 0,1,2,4 -method staple 
-    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_staple.nii.gz', './data/test_staple.nii.gz'))) else print('pass')"
+    python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_staple.nii.gz', './data/test_staple.nii.gz'))) else print('pass')"
   displayName: 'Run through staple'
   
 - script: |
     python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_itkvoting.nii.gz -classes 0,1,2,4 -method itkvoting 
-    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_itkvoting.nii.gz', './data/test_itkvoting.nii.gz'))) else print('pass')"
+    python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_itkvoting.nii.gz', './data/test_itkvoting.nii.gz'))) else print('pass')"
   displayName: 'Run through itkvoting'
   
 - script: |
     python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_majorityvoting.nii.gz -classes 0,1,2,4 -method majorityvoting 
-    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_majorityvoting.nii.gz', './data/test_majorityvoting.nii.gz'))) else print('pass')"
+    python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_majorityvoting.nii.gz', './data/test_majorityvoting.nii.gz'))) else print('pass')"
   displayName: 'Run through majorityvoting'
   
 - script: |
     python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_simple.nii.gz -classes 0,1,2,4 -method simple 
-    python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
+    python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
   displayName: 'Run through simple'
 
 - script: |

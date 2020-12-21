@@ -16,7 +16,7 @@ conda activate ./venv
 pip install -e .
 ```
 
-## Available Methods:
+## Available LabelFusion:
 
 - [Voting (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1LabelVotingImageFilter.html): [DOI:10.1016/j.patrec.2005.03.017](https://doi.org/10.1016/j.patrec.2005.03.017)
 - [STAPLE (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1MultiLabelSTAPLEImageFilter.html): [DOI:10.1109/TMI.2004.830803](https://doi.org/10.1109/TMI.2004.830803)
