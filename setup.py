@@ -25,9 +25,9 @@ setup(
   python_requires='>=3.6',
   scripts=['fusion_run'],
   classifiers=[
-    'Development Status :: Pre-Alpha',
+    'Development Status :: 1 - Planning',
     'Intended Audience :: Science/Research',
-    'License :: OSI Approved :: BSD-3-Clause License',
+    'License :: OSI Approved :: BSD License',
     'Natural Language :: English',
     'Operating System :: OS Independent',
     'Programming Language :: Python :: 3.6',
