@@ -62,8 +62,8 @@ steps:
   displayName: 'Run through simple'
 
 - script: |
-  python setup.py bdist_wheel
-displayName: 'Artifact creation'
+    python setup.py bdist_wheel
+  displayName: 'Artifact creation'
 
 - task: CopyFiles@2
   inputs:
