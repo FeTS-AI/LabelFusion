@@ -68,9 +68,8 @@ steps:
 - task: TwineAuthenticate@1
   displayName: 'Twine Authenticate'
   inputs:
-    pythonUploadServiceConnection: PyPi
-  
-# Use command line script to 'twine upload', use -r to pass the repository name and --config-file to pass the environment variable set by the authenticate task.
+    pythonUploadServiceConnection: PyPi  
+
 - script: |
-     python -m twine upload -r "pypitest" --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload -r "pypitest" --config-file $(PYPIRC_PATH) dist/*.whl
   displayName: 'Uploading build'
