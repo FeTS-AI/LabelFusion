@@ -11,6 +11,7 @@ requirements = [
   'numpy==1.19.3',
   'SimpleITK==1.2.4',
   'setuptools',
+  'wheel',
   'twine',
   'keyring',
   'artifacts-keyring'
