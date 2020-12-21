@@ -61,9 +61,9 @@ steps:
     python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
   displayName: 'Run through simple'
 
-  - script: |
-    python setup.py bdist_wheel
-  displayName: 'Artifact creation'
+- script: |
+  python setup.py bdist_wheel
+displayName: 'Artifact creation'
 
 - task: CopyFiles@2
   inputs:
