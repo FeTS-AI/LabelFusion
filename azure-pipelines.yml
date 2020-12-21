@@ -61,14 +61,16 @@ steps:
     python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
   displayName: 'Run through simple'
 
-- script: |
+  - script: |
     python setup.py bdist_wheel
-    twine upload dist/*
-  #workingDirectory: {{rootdir}}
-  displayName: Publish
-  continueOnError: true
-  #env:
-   # TWINE_USERNAME: AIPlatform
-   # TWINE_PASSWORD: $(System.AccessToken)
-   # TWINE_REPOSITORY_URL: https://pkgs.dev.azure.com/FETS-AI/LabelFusion/_packaging/PublishArtifact/pypi/upload
-  condition: succeeded()
+  displayName: 'Artifact creation'
+
+- task: CopyFiles@2
+  inputs:
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'dist'
+    publishLocation: 'Container'
