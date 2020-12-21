@@ -67,8 +67,8 @@ steps:
   #workingDirectory: {{rootdir}}
   displayName: Publish
   continueOnError: true
-  env:
-    TWINE_USERNAME: AIPlatform
-    TWINE_PASSWORD: $(System.AccessToken)
-    TWINE_REPOSITORY_URL: https://pkgs.dev.azure.com/FETS-AI/LabelFusion/_packaging/PublishArtifact/pypi/upload
+  #env:
+   # TWINE_USERNAME: AIPlatform
+   # TWINE_PASSWORD: $(System.AccessToken)
+   # TWINE_REPOSITORY_URL: https://pkgs.dev.azure.com/FETS-AI/LabelFusion/_packaging/PublishArtifact/pypi/upload
   condition: succeeded()
