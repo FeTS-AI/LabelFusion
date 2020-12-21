@@ -1,0 +1,1 @@
+from Methods.wrapper import fuse_images
