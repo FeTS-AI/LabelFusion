@@ -29,12 +29,6 @@ strategy:
 
 pool:
   vmImage: $(imageName)
-
-variables:
-- name: projectName
-  value: {{namespace}}
-- name: projectDirectory
-  value: {{rootdir}}
   
 steps:
 - task: UsePythonVersion@0
@@ -70,7 +64,7 @@ steps:
 - script: |
     python setup.py bdist_wheel
     twine upload dist/*
-  workingDirectory: $(projectDirectory)
+  workingDirectory: {{rootdir}}
   displayName: Publish
   continueOnError: true
   env:
