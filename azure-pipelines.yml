@@ -60,4 +60,15 @@ steps:
     python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_simple.nii.gz -classes 0,1,2,4 -method simple 
     python -c "from Methods.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
   displayName: 'Run through simple'
-  
+
+- script: |
+    python setup.py bdist_wheel
+    twine upload dist/*
+  workingDirectory: $(projectDirectory)
+  displayName: Publish
+  continueOnError: true
+  env:
+    TWINE_USERNAME: AIPlatform
+    TWINE_PASSWORD: $(System.AccessToken)
+    TWINE_REPOSITORY_URL: https://pkgs.dev.azure.com/FETS-AI/LabelFusion/_packaging/PublishArtifact/pypi/upload
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
