@@ -71,5 +71,5 @@ steps:
     pythonUploadServiceConnection: PyPi  
 
 - script: |
-    python -m twine upload -r PyPi --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload -r "labelfusion" --config-file $(PYPIRC_PATH) dist/*.whl
   displayName: 'Uploading build'
