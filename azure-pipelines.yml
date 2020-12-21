@@ -64,7 +64,7 @@ steps:
 - script: |
     python setup.py bdist_wheel
     twine upload dist/*
-  workingDirectory: {{rootdir}}
+  #workingDirectory: {{rootdir}}
   displayName: Publish
   continueOnError: true
   env:
