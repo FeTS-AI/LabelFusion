@@ -71,4 +71,4 @@ steps:
     TWINE_USERNAME: AIPlatform
     TWINE_PASSWORD: $(System.AccessToken)
     TWINE_REPOSITORY_URL: https://pkgs.dev.azure.com/FETS-AI/LabelFusion/_packaging/PublishArtifact/pypi/upload
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  condition: succeeded()
