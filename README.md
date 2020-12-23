@@ -19,11 +19,14 @@ pip install LabelFusion
 
 ### For Development
 ```powershell
-git clone ${labelFusion_repo_link}
+# fork to your own repo
+git clone ${yourFork_labelFusion_repo_link}
 cd LabelFusion
 conda create -p ./venv python=3.6.5 -y
 conda activate ./venv
 pip install -e .
+# develop, push
+# initiate pull request
 ```
 
 ## Available LabelFusion:
