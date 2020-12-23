@@ -37,11 +37,12 @@ setup(
   description=(
     "Label fusion strategies for multi-class labels."
   ),
+  url='https://github.com/FETS-AI/LabelFusion'
   install_requires=requirements,
   license="BSD-3-Clause License",
   long_description=readme,
   long_description_content_type='text/markdown',
   include_package_data=True,
-  keywords='semantic, segmentation, brain, breast, liver, lung, label-fusion, fusion',
+  keywords='semantic, segmentation, label-fusion, fusion',
   zip_safe=False,
 )
