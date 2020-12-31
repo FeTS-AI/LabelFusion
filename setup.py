@@ -37,7 +37,7 @@ setup(
   description=(
     "Label fusion strategies for multi-class labels."
   ),
-  url='https://github.com/FETS-AI/LabelFusion'
+  url='https://github.com/FETS-AI/LabelFusion',
   install_requires=requirements,
   license="BSD-3-Clause License",
   long_description=readme,
