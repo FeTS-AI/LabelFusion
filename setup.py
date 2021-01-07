@@ -19,7 +19,7 @@ requirements = [
 
 setup(
   name='LabelFusion',
-  version='0.0.2', # dev: development release; this should be changed when tagging
+  version='1.0.1', # dev: development release; this should be changed when tagging
   author="Megh Bhalerao, Sarthak Pati",
   author_email='software@cbica.upenn.edu',
   python_requires='>=3.6',
@@ -37,7 +37,7 @@ setup(
   description=(
     "Label fusion strategies for multi-class labels."
   ),
-  url='https://github.com/FETS-AI/LabelFusion'
+  url='https://github.com/FETS-AI/LabelFusion',
   install_requires=requirements,
   license="BSD-3-Clause License",
   long_description=readme,
