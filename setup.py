@@ -23,6 +23,7 @@ setup(
   author="Megh Bhalerao, Sarthak Pati",
   author_email='software@cbica.upenn.edu',
   python_requires='>=3.6',
+  packages=find_packages(),
   scripts=['fusion_run'],
   classifiers=[
     'Development Status :: 1 - Planning',
