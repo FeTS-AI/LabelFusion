@@ -19,14 +19,14 @@ requirements = [
 
 setup(
   name='LabelFusion',
-  version='1.0.2', # dev: development release; this should be changed when tagging
+  version='1.0.3', # dev: development release; this should be changed when tagging
   author="Megh Bhalerao, Sarthak Pati",
   author_email='software@cbica.upenn.edu',
   python_requires='>=3.6',
   packages=find_packages(),
   scripts=['fusion_run'],
   classifiers=[
-    'Development Status :: 1 - Planning',
+    'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Science/Research',
     'License :: OSI Approved :: BSD License',
     'Natural Language :: English',
