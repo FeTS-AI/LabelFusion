@@ -43,7 +43,7 @@ pip install -e .
 python fusion_run -h
   -h, --help        show this help message and exit
   -inputs INPUTS    The absolute, comma-separated paths of labels that need to be fused
-  -classes CLASSES  The expected labels; for example, for BraTS, this should be '0,1,2,4'
+  -classes CLASSES  The expected labels; for example, for BraTS, this should be '0,1,2,4' - not used for STAPLE or ITKVoting
   -method METHOD    The method to apply; currently available: STAPLE | ITKVoting | MajorityVoting | SIMPLE
   -output OUTPUT    The output file to write the results
 ```
