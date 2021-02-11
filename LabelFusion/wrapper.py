@@ -1,12 +1,12 @@
 from .fusion_wrappers import *
 
-def fuse_images(list_of_simpleITK_images, method, class_list):
+def fuse_images(list_of_simpleITK_images, method, class_list=None):
   '''
   This function takes a list of simpleITK images and pushes it to appropriate functions
   '''
   
   method = method.lower()
-  
+
   if not(method in direct_itk_LabelFusion): # for non-itk LabelFusion, get image arrays
     inputListOfOneHotEncodedMasks = []
 
