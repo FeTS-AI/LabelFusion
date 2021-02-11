@@ -38,6 +38,8 @@ pip install -e .
 
 ## Usage
 
+### Command-Line interface
+
 ```powershell
 # continue from previous shell
 python fusion_run -h
@@ -56,6 +58,25 @@ python fusion_run \
 -classes 0,1,2,4 \
 -method STAPLE \
 -output /path/to/seg_fusion.nii.gz
+```
+
+### Python interface
+
+```python
+# assuming virtual environment containing LabelFusion is activated
+import SimpleITK as sitk
+from LabelFusion.wrapper import fuse_images
+
+label_to_fuse_0 = '/path/to/image_0.nii.gz'
+label_to_fuse_1 = '/path/to/image_1.nii.gz'
+
+images_to_fuse = []
+images_to_fuse.append(sitk.ReadImage(label_to_fuse_0, sitk.sitkUInt8))
+images_to_fuse.append(sitk.ReadImage(label_to_fuse_1, sitk.sitkUInt8))
+fused_staple = fuse_images(subjectsToFuse[subject], 'staple') # class_list is not needed for staple/itkvoting
+sitk.WriteImage(fused_staple, '/path/to/output_staple.nii.gz')
+fused_simple = fuse_images(subjectsToFuse[subject], 'simple', class_list='0,1,2,4')
+sitk.WriteImage(fused_simple, '/path/to/output_simple.nii.gz')
 ```
 
 ## Testing
