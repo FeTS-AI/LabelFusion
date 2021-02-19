@@ -8,23 +8,40 @@ def imageSanityCheck(targetImageFile, inputImageFile) -> bool:
   targetImage = sitk.ReadImage(targetImageFile)
   inputImage = sitk.ReadImage(inputImageFile)
 
+  commonMessage = ' mismatch for target image, \'' + targetImageFile + '\' and input image, \'' + inputImageFile + '\''
+  problemsIn = ''
+  returnTrue = True
+
   if targetImage.GetDimension() != inputImage.GetDimension():
-    print('Dimension mismatch for target and input image', file = sys.stderr)
-    return False
+    problemsIn += 'Dimension'
+    returnTrue = False
 
   if targetImage.GetSize() != inputImage.GetSize():
-    print('Size mismatch for target and input image', file = sys.stderr)
-    return False
+    if not problemsIn:
+      problemsIn += 'Size'
+    else:
+      problemsIn += ', Size'
+    returnTrue = False
     
   if targetImage.GetOrigin() != inputImage.GetOrigin():
-    print('Origin mismatch for target and input image', file = sys.stderr)
-    return False
+    if not problemsIn:
+      problemsIn += 'Origin'
+    else:
+      problemsIn += ', Origin'
+    returnTrue = False
 
   if targetImage.GetSpacing() != inputImage.GetSpacing():
-    print('Spacing mismatch for target and input image', file = sys.stderr)
-    return False
+    if not problemsIn:
+      problemsIn += 'Spacing'
+    else:
+      problemsIn += ', Spacing'
+    returnTrue = False
 
-  return True
+  if returnTrue:
+    return True
+  else:
+    print(problemsIn + commonMessage, file = sys.stderr)
+    return False
 
 def imageComparision(targetImageFile, inputImageFile) -> bool:
   '''
