@@ -9,7 +9,7 @@ with open('README.md') as readme_file:
 
 requirements = [
   'numpy==1.19.3',
-  'SimpleITK==1.2.4',
+  'SimpleITK==2.0.2',
   'setuptools',
   'wheel',
   'twine',
