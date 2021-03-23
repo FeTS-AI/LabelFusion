@@ -1,5 +1,6 @@
 from .majority_voting import *
 from .simple import *
+from .fusionator import Fusionator
 
 import SimpleITK as sitk
 
@@ -12,7 +13,8 @@ def fuse_segmentations_nonITK(list_of_oneHotEncodedSegmentations, method, class_
   if 'majority' in method:
     return majority_voting(list_of_oneHotEncodedSegmentations)
   elif 'simple' in method:
-    return simple_iterative(list_of_oneHotEncodedSegmentations)
+    fusion = Fusionator()
+    return fusion.simple(list_of_oneHotEncodedSegmentations, labels=class_list)
 
 def fuse_segmentations_itk(list_of_segmentations_images, method):
   '''
