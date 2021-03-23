@@ -21,12 +21,8 @@ def fuse_segmentations_itk(list_of_segmentations_images, method):
   if 'staple' in method:
     filter = sitk.MultiLabelSTAPLEImageFilter()
     filter.SetLabelForUndecidedPixels(0)
-    filter.SetMaximumNumberOfIterations(50)
-    filter.SetDebug(True)
-    test = filter.Execute(list_of_segmentations_images)
-    # test = filter.ComputeMaximumInputValue()
     
-    return test # sitk.MultiLabelSTAPLE(list_of_segmentations_images, 3) # DOI: 10.1109/TMI.2004.830803
+    return filter.Execute(list_of_segmentations_images) # sitk.MultiLabelSTAPLE(list_of_segmentations_images) # DOI: 10.1109/TMI.2004.830803
   elif 'voting' in method:
     votingFilter = sitk.LabelVotingImageFilter()
     votingFilter.SetLabelForUndecidedPixels(0)
