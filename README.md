@@ -75,9 +75,9 @@ label_to_fuse_1 = '/path/to/image_1.nii.gz'
 images_to_fuse = []
 images_to_fuse.append(sitk.ReadImage(label_to_fuse_0, sitk.sitkUInt8))
 images_to_fuse.append(sitk.ReadImage(label_to_fuse_1, sitk.sitkUInt8))
-fused_staple = fuse_images(subjectsToFuse[subject], 'staple') # class_list is not needed for staple/itkvoting
+fused_staple = fuse_images(images_to_fuse, 'staple') # class_list is not needed for staple/itkvoting
 sitk.WriteImage(fused_staple, '/path/to/output_staple.nii.gz')
-fused_simple = fuse_images(subjectsToFuse[subject], 'simple', class_list='0,1,2,4')
+fused_simple = fuse_images(images_to_fuse, 'simple', class_list=[0,1,2,4])
 sitk.WriteImage(fused_simple, '/path/to/output_simple.nii.gz')
 ```
 
