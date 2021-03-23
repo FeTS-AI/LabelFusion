@@ -16,7 +16,7 @@ import os.path as op
 # from .util import filemanager as fm
 
 class Fusionator(object):
-    def __init__(self, verbose=True):
+    def __init__(self, verbose=False):
         self.verbose = verbose
 
     def binaryMav(self, candidates, weights=None):
@@ -50,8 +50,10 @@ class Fusionator(object):
         label = np.zeros(temp.shape)
         for c, w in zip(candidates, weights):
             if c.max() != 1 or c.min() != 0:
-                logging.warning('The passed segmentation contains labels other than 1 and 0.')
-            print('weight is: ' + str(w))
+                if self.verbose:
+                    logging.warning('The passed segmentation contains labels other than 1 and 0.')
+            if self.verbose:
+                print('weight is: ' + str(w))
             label[c == 1] += 1.0*w
         num = sum(weights)
         result[label >= (num/2.0)] = 1
@@ -411,6 +413,7 @@ class Fusionator(object):
         returns: a score [0,1], 1 for identical inputs
         '''
         try: 
+            np.seterr(all='ignore') 
             # True Positive (TP): we predict a label of 1 (positive) and the true label is 1.
             TP = np.sum(np.logical_and(seg == 1, gt == 1))
             # True Negative (TN): we predict a label of 0 (negative) and the true label is 0.
