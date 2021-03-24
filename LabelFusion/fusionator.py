@@ -21,7 +21,7 @@ class Fusionator(object):
 
     def binaryMav(self, candidates, weights=None):
         '''
-        binaryMav performs majority vote fusion on an arbitary number of input segmentations with
+        binaryMav performs majority vote fusion on an arbitrary number of input segmentations with
         only two classes each (1 and 0).
         
         Args:
@@ -66,7 +66,7 @@ class Fusionator(object):
 
     def mav(self, candidates, labels=None, weights=None):
         '''
-        mav performs majority vote fusion on an arbitary number of input segmentations with
+        mav performs majority vote fusion on an arbitrary number of input segmentations with
         an arbitrary number of labels. 
         
         Args:
