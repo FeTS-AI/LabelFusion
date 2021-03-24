@@ -72,4 +72,5 @@ steps:
 
 - script: |
     python -m twine upload --skip-existing -r "labelfusion" --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload --skip-existing -r "labelfusion" --config-file $(PYPIRC_PATH) dist/*.tar.gz
   displayName: 'Uploading build'
