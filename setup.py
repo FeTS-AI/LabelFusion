@@ -8,7 +8,7 @@ with open('README.md') as readme_file:
   readme = readme_file.read()
 
 requirements = [
-  'numpy==1.19.3',
+  'numpy==1.19.4',
   'SimpleITK==2.0.2',
   'setuptools',
   'wheel',
