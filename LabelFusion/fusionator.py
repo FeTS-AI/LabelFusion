@@ -85,7 +85,7 @@ class Fusionator(object):
             print('ERROR! No segmentations to fuse.')
         if self.verbose:
             print ('Number of segmentations to be fused using compound majority vote is: ', num)
-        # if no labels are passed, get the labels from the first input file (might lead to misisng labels!)
+        # if no labels are passed, get the labels from the first input file (might lead to missing labels!)
         if labels == None:
             labels = np.unique(candidates[0])
             for c in candidates:
