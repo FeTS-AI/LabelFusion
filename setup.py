@@ -13,8 +13,7 @@ requirements = [
   'setuptools',
   'wheel',
   'twine',
-  'keyring',
-  'artifacts-keyring'
+  'keyring'
 ]
 
 setup(
