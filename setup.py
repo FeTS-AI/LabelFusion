@@ -20,7 +20,7 @@ requirements = [
 
 setup(
     name="LabelFusion",
-    version="1.0.12",  # dev: development release; this should be changed when tagging
+    version="1.0.13",  # dev: development release; this should be changed when tagging
     author="Megh Bhalerao, Sarthak Pati",
     author_email="software@cbica.upenn.edu",
     python_requires=">=3.6",
