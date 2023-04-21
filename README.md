@@ -93,3 +93,4 @@ And for the following python versions:
 
 - 3.6
 - 3.7
+- 3.8
