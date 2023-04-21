@@ -15,6 +15,7 @@ requirements = [
     "wheel",
     "twine",
     "keyring",
+    "black",
 ]
 
 setup(

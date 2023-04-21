@@ -1,28 +1,40 @@
 from .fusion_wrappers import *
 
+
 def fuse_images(list_of_simpleITK_images, method, class_list=None):
-  '''
-  This function takes a list of simpleITK images and pushes it to appropriate functions
-  '''
-  
-  method = method.lower()
+    """
+    This function takes a list of simpleITK images and pushes it to appropriate functions
+    """
 
-  if not(method in direct_itk_LabelFusion): # for non-itk LabelFusion, get image arrays
-    inputListOfOneHotEncodedMasks = []
+    method = method.lower()
 
-    for image in list_of_simpleITK_images:
-      current_immage_array = sitk.GetArrayFromImage(image) # initialize the fused segmentation array
+    if not (
+        method in direct_itk_LabelFusion
+    ):  # for non-itk LabelFusion, get image arrays
+        inputListOfOneHotEncodedMasks = []
 
-      inputListOfOneHotEncodedMasks.append(one_hot_nonoverlap(current_immage_array, class_list))
+        for image in list_of_simpleITK_images:
+            current_immage_array = sitk.GetArrayFromImage(
+                image
+            )  # initialize the fused segmentation array
 
-    # call the fusion
-    fused_oneHot = fuse_segmentations_nonITK(inputListOfOneHotEncodedMasks, method, class_list)
-    fused_segmentation_image = sitk.GetImageFromArray(convert_to_3D(fused_oneHot, class_list))
-    fused_segmentation_image.CopyInformation(list_of_simpleITK_images[0])
+            inputListOfOneHotEncodedMasks.append(
+                one_hot_nonoverlap(current_immage_array, class_list)
+            )
 
-  else: # for direct itk LabelFusion, we actually need the images themselves
+        # call the fusion
+        fused_oneHot = fuse_segmentations_nonITK(
+            inputListOfOneHotEncodedMasks, method, class_list
+        )
+        fused_segmentation_image = sitk.GetImageFromArray(
+            convert_to_3D(fused_oneHot, class_list)
+        )
+        fused_segmentation_image.CopyInformation(list_of_simpleITK_images[0])
 
-    # call the fusion
-    fused_segmentation_image = fuse_segmentations_itk(list_of_simpleITK_images, method)
+    else:  # for direct itk LabelFusion, we actually need the images themselves
+        # call the fusion
+        fused_segmentation_image = fuse_segmentations_itk(
+            list_of_simpleITK_images, method
+        )
 
-  return fused_segmentation_image
+    return fused_segmentation_image
