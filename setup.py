@@ -8,7 +8,7 @@ with open("README.md") as readme_file:
     readme = readme_file.read()
 
 requirements = [
-    "numpy==1.22.0",
+    "numpy",
     "SimpleITK!=2.0.*",
     "SimpleITK!=2.2.1",  # https://github.com/mlcommons/GaNDLF/issues/536
     "setuptools",
@@ -20,10 +20,10 @@ requirements = [
 
 setup(
     name="LabelFusion",
-    version="1.0.13",  # dev: development release; this should be changed when tagging
+    version="1.0.14",  # dev: development release; this should be changed when tagging
     author="Megh Bhalerao, Sarthak Pati",
     author_email="software@cbica.upenn.edu",
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     packages=find_packages(),
     scripts=["fusion_run"],
     classifiers=[
@@ -32,9 +32,9 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Natural Language :: English",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
     description=("Label fusion strategies for multi-class labels."),
     url="https://github.com/FETS-AI/LabelFusion",
