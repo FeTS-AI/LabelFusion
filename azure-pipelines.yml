@@ -52,17 +52,3 @@ steps:
     python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_simple.nii.gz -classes 0,1,2,4 -method simple 
     python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
   displayName: 'Run through simple'
-
-- script: |
-    python setup.py sdist bdist_wheel
-  displayName: 'Artifact creation'
-
-- task: TwineAuthenticate@1
-  displayName: 'Twine Authenticate'
-  inputs:
-    pythonUploadServiceConnection: PyPi  
-
-- script: |
-    python -m twine upload --skip-existing -r "labelfusion" --config-file $(PYPIRC_PATH) dist/*.whl
-    python -m twine upload --skip-existing -r "labelfusion" --config-file $(PYPIRC_PATH) dist/*.tar.gz
-  displayName: 'Uploading build'
