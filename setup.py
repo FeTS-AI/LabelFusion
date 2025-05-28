@@ -22,7 +22,7 @@ setup(
     name="LabelFusion",
     version="1.0.14",  # dev: development release; this should be changed when tagging
     author="Megh Bhalerao, Sarthak Pati",
-    author_email="software@cbica.upenn.edu",
+    author_email="admin@fets.ai",
     python_requires=">=3.8",
     packages=find_packages(),
     scripts=["fusion_run"],
