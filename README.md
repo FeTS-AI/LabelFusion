@@ -13,14 +13,14 @@ This repo contains implementation of various label fusion approaches that can be
 ## Installation
 
 ### For Usage
-```powershell
+```sh
 conda create -n venv_labelFusion python=3.12 -y
 conda activate venv_labelFusion
 pip install LabelFusion
 ```
 
 ### For Development
-```powershell
+```sh
 # fork to your own repo
 git clone ${yourFork_labelFusion_repo_link}
 cd LabelFusion
@@ -42,7 +42,7 @@ pip install -e .
 
 ### Command-Line interface
 
-```powershell
+```sh
 # continue from previous shell
 python fusion_run -h
   -h, --help        show this help message and exit
@@ -53,7 +53,7 @@ python fusion_run -h
 ```
 
 Example:
-```powershell
+```sh
 # continue from previous shell
 python fusion_run \
 -inputs /path/to/seg_algo_1.nii.gz,/path/to/seg_algo_2.nii.gz,/path/to/seg_algo_3.nii.gz \
@@ -83,7 +83,7 @@ sitk.WriteImage(fused_simple, '/path/to/output_simple.nii.gz')
 
 ## Testing
 
-This repo has continuous integration enbabled via [Azure DevOps](https://dev.azure.com/FETS-AI/LabelFusion/_build?definitionId=2&_a=summary) for the following [operating systems](https://github.com/FETS-AI/LabelFusion/blob/a51b82ad9880d466ed1d42441dd46de37e931df4/azure-pipelines.yml#L9):
+This repo has continuous integration enabled via [Azure DevOps](https://dev.azure.com/FETS-AI/LabelFusion/_build?definitionId=2&_a=summary) for the following [operating systems](https://github.com/FETS-AI/LabelFusion/blob/a51b82ad9880d466ed1d42441dd46de37e931df4/azure-pipelines.yml#L9):
 
 - Windows
 - Ubuntu
