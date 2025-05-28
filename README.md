@@ -14,7 +14,7 @@ This repo contains implementation of various label fusion approaches that can be
 
 ### For Usage
 ```powershell
-conda create -n venv_labelFusion python=3.6.5 -y
+conda create -n venv_labelFusion python=3.12 -y
 conda activate venv_labelFusion
 pip install LabelFusion
 ```
@@ -24,7 +24,7 @@ pip install LabelFusion
 # fork to your own repo
 git clone ${yourFork_labelFusion_repo_link}
 cd LabelFusion
-conda create -p ./venv python=3.6.5 -y
+conda create -p ./venv python=3.12 -y
 conda activate ./venv
 pip install -e .
 # develop, push
@@ -91,6 +91,7 @@ This repo has continuous integration enbabled via [Azure DevOps](https://dev.azu
 
 And for the following python versions:
 
-- 3.6
-- 3.7
-- 3.8
+- 3.9
+- 3.10
+- 3.11
+- 3.12
