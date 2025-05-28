@@ -1,0 +1,58 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Build & Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install flake8 pytest build wheel coverage pytest-cov
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install -e .
+    - name: Run through staple
+      run: |
+        python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_staple.nii.gz -classes 0,1,2,4 -method staple 
+        python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_staple.nii.gz', './data/test_staple.nii.gz'))) else print('pass')"
+    - name: Run through itkvoting
+      run: |
+        python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_itkvoting.nii.gz -classes 0,1,2,4 -method itkvoting 
+        python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_itkvoting.nii.gz', './data/test_itkvoting.nii.gz'))) else print('pass')"
+    - name: Run through majorityvoting
+      run: |
+        python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_majorityvoting.nii.gz -classes 0,1,2,4 -method majorityvoting 
+        python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_majorityvoting.nii.gz', './data/test_majorityvoting.nii.gz'))) else print('pass')"
+    - name: Run through simple
+      run: |
+        python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_simple.nii.gz -classes 0,1,2,4 -method simple 
+        python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
+        
+    - name: Build distributions
+      run: python setup.py sdist
+
+    - name: Publish package to PyPI
+      if: github.repository == 'CBICA/FigureGenerator' && github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        user: __token__
+        password: ${{ secrets.pypi_password }}
