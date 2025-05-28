@@ -46,13 +46,3 @@ jobs:
       run: |
         python fusion_run -inputs ./data/unet.nii.gz,./data/resunet.nii.gz -output ./data/test_simple.nii.gz -classes 0,1,2,4 -method simple 
         python -c "from LabelFusion.itkUtils import *; sys.exit('fail') if(not (imageComparision('./data/baseline_simple.nii.gz', './data/test_simple.nii.gz'))) else print('pass')"
-        
-    - name: Build distributions
-      run: python setup.py sdist
-
-    - name: Publish package to PyPI
-      if: github.repository == 'CBICA/FigureGenerator' && github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-      uses: pypa/gh-action-pypi-publish@master
-      with:
-        user: __token__
-        password: ${{ secrets.pypi_password }}
