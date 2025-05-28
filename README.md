@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="https://dev.azure.com/FETS-AI/LabelFusion/_build?definitionId=2&_a=summary" alt="Windows_3.6"><img src="https://dev.azure.com/FETS-AI/LabelFusion/_apis/build/status/FETS-AI.LabelFusion" /></a>
-    <a href="https://doi.org/10.5281/zenodo.4534123"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4534123.svg" alt="DOI"></a>
+    <a href="https://doi.org/10.5281/zenodo.4534122"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4534122.svg" alt="DOI"></a>
     <a href="https://anaconda.org/conda-forge/labelfusion" alt="Install"><img src="https://img.shields.io/conda/vn/conda-forge/labelfusion" /></a>
     <a href="https://pypi.org/project/LabelFusion/"><img src="https://img.shields.io/pypi/v/labelfusion"/></a>
 </p>
