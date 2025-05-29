@@ -12,7 +12,7 @@ This repo contains implementation of various label fusion approaches that can be
 
 ## Installation
 
-### For Usage
+### Default
 ```sh
 conda create -n venv_labelFusion python=3.12 -y
 conda activate venv_labelFusion
@@ -31,7 +31,7 @@ pip install -e .
 # initiate pull request
 ```
 
-## Available LabelFusion:
+## Available fusion methods:
 
 - [Voting (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1LabelVotingImageFilter.html): [DOI:10.1016/j.patrec.2005.03.017](https://doi.org/10.1016/j.patrec.2005.03.017)
 - [STAPLE (ITK)](https://simpleitk.org/doxygen/latest/html/classitk_1_1simple_1_1MultiLabelSTAPLEImageFilter.html): [DOI:10.1109/TMI.2004.830803](https://doi.org/10.1109/TMI.2004.830803)
@@ -47,7 +47,7 @@ pip install -e .
 python fusion_run -h
   -h, --help        show this help message and exit
   -inputs INPUTS    The absolute, comma-separated paths of labels that need to be fused
-  -classes CLASSES  The expected labels; for example, for BraTS, this should be '0,1,2,4' - not used for STAPLE or ITKVoting
+  -classes CLASSES  The expected labels; for example, for BraTS, this should be '0,1,2,3' - not used for STAPLE or ITKVoting
   -method METHOD    The method to apply; currently available: STAPLE | ITKVoting | MajorityVoting | SIMPLE
   -output OUTPUT    The output file to write the results
 ```
@@ -57,7 +57,7 @@ Example:
 # continue from previous shell
 python fusion_run \
 -inputs /path/to/seg_algo_0.nii.gz,/path/to/seg_algo_1.nii.gz,/path/to/seg_algo_2.nii.gz \
--classes 0,1,2,4 \
+-classes 0,1,2,3 \
 -method STAPLE \
 -output /path/to/seg_fusion.nii.gz
 ```
@@ -77,13 +77,13 @@ images_to_fuse.append(sitk.ReadImage(label_to_fuse_0, sitk.sitkUInt8))
 images_to_fuse.append(sitk.ReadImage(label_to_fuse_1, sitk.sitkUInt8))
 fused_staple = fuse_images(images_to_fuse, 'staple') # class_list is not needed for staple/itkvoting
 sitk.WriteImage(fused_staple, '/path/to/output_staple.nii.gz')
-fused_simple = fuse_images(images_to_fuse, 'simple', class_list=[0,1,2,4])
+fused_simple = fuse_images(images_to_fuse, 'simple', class_list=[0,1,2,3])
 sitk.WriteImage(fused_simple, '/path/to/output_simple.nii.gz')
 ```
 
 ## Testing
 
-This repo has continuous integration enabled via [Azure DevOps](https://dev.azure.com/FETS-AI/LabelFusion/_build?definitionId=2&_a=summary) for the following [operating systems](https://github.com/FETS-AI/LabelFusion/blob/a51b82ad9880d466ed1d42441dd46de37e931df4/azure-pipelines.yml#L9):
+This repo has continuous integration enabled via [GitHub Actions](https://github.com/FeTS-AI/LabelFusion/actions/workflows/test.yml) for the following [operating systems](https://github.com/FeTS-AI/LabelFusion/blob/main/.github/workflows/test.yml#L18):
 
 - Windows
 - Ubuntu
