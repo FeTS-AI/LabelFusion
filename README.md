@@ -56,7 +56,7 @@ Example:
 ```sh
 # continue from previous shell
 python fusion_run \
--inputs /path/to/seg_algo_1.nii.gz,/path/to/seg_algo_2.nii.gz,/path/to/seg_algo_3.nii.gz \
+-inputs /path/to/seg_algo_0.nii.gz,/path/to/seg_algo_1.nii.gz,/path/to/seg_algo_2.nii.gz \
 -classes 0,1,2,4 \
 -method STAPLE \
 -output /path/to/seg_fusion.nii.gz
@@ -69,8 +69,8 @@ python fusion_run \
 import SimpleITK as sitk
 from LabelFusion.wrapper import fuse_images
 
-label_to_fuse_0 = '/path/to/image_0.nii.gz'
-label_to_fuse_1 = '/path/to/image_1.nii.gz'
+label_to_fuse_0 = '/path/to/seg_algo_0.nii.gz'
+label_to_fuse_1 = '/path/to/seg_algo_1.nii.gz'
 
 images_to_fuse = []
 images_to_fuse.append(sitk.ReadImage(label_to_fuse_0, sitk.sitkUInt8))
